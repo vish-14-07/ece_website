@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student and Staff Portal</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 600px;
+            overflow: auto;
+        }
+        .container h2 {
+            margin-bottom: 20px;
+        }
+        .container input, .container select, .container button {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .container button {
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        .container button:hover {
+            background-color: #0056b3;
+        }
+        .details-container {
+            display: none;
+        }
+        .details-container p {
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container" id="loginContainer">
+        <h2>Login</h2>
+        <form id="loginForm">
+            <input type="text" id="username" placeholder="Username" required>
+            <input type="password" id="password" placeholder="Password" required>
+            <select id="role" required>
+                <option value="">Select Role</option>
+                <option value="student">Student</option>
+                <option value="staff">Staff</option>
+            </select>
+            <button type="submit">Login</button>
+        </form>
+    </div>
+
+    <div class="container details-container" id="detailsContainer">
+        <h2>Student Details</h2>
+        <p><strong>Name:</strong> <span id="studentName"></span></p>
+        <p><strong>Roll Number:</strong> <span id="rollNo"></span></p>
+        <p><strong>Class:</strong> <span id="class"></span></p>
+        <p><strong>Section:</strong> <span id="section"></span></p>
+        <p><strong>Mobile No:</strong> <span id="mobileNo"></span></p>
+        <p><strong>Date of Birth:</strong> <span id="dob"></span></p>
+        <p><strong>Mentor Name:</strong> <span id="mentor"></span></p>
+        <p><strong>CGPA:</strong> <span id="cgpa"></span></p>
+        <p><strong>Paper Presented:</strong> <span id="paperPresented"></span></p>
+        <p><strong>Project Presented:</strong> <span id="projectPresented"></span></p>
+        <p><strong>Inplant Training:</strong> <span id="inplantTraining"></span></p>
+    </div>
+
+    <script>
+        // Sample student data
+        const studentData = {
+            '22ECR130': {
+                name: 'POOJA P',
+                rollNo: '22ECR130',
+                class: '3rd Year',
+                section: 'C',
+                mobileNo: '6379842767',
+                dob: '2005-01-15',
+                mentor: 'Mr. M. RAMESH',
+                cgpa: '8.5',
+                paperPresented: '3',
+                projectPresented: '2',
+                inplantTraining: 'Yes'
+            },
+            '22ECR159': {
+                name: 'SAHANA A P',
+                rollNo: '22ECR159',
+                class: '3rd Year',
+                section: 'C',
+                mobileNo: '9876590876',
+                dob: '2004-12-05',
+                mentor: 'Ms. M. RAMESH',
+                cgpa: '9.0',
+                paperPresented: '5',
+                projectPresented: '1',
+                inplantTraining: 'No'
+            },
+            '22ECR236': {
+                name: 'VISHALI J R',
+                rollNo: '22ECR236',
+                class: '3rd Year',
+                section: 'D',
+                mobileNo: '9876890532',
+                dob: '2004-03-22',
+                mentor: 'Ms. VENNILA',
+                cgpa: '8.5',
+                paperPresented: '2',
+                projectPresented: '3',
+                inplantTraining: 'Yes'
+            },
+            '22ECR237': {
+                name: 'VISHALINI',
+                rollNo: '22ECR237',
+                class: '3rd Year',
+                section: 'D',
+                mobileNo: '9566778899',
+                dob: '2005-07-18',
+                mentor: 'Ms. VENNILA ',
+                cgpa: '8.7',
+                paperPresented: '4',
+                projectPresented: '2',
+                inplantTraining: 'No'
+            },
+            '22ECR001': {
+                name: 'ABINAYA',
+                rollNo: '22ECR001',
+                class: '3rd Year',
+                section: 'A',
+                mobileNo: '6377889900',
+                dob: '2005-10-25',
+                mentor: 'Ms. MEERADEVI',
+                cgpa: '9.1',
+                paperPresented: '3',
+                projectPresented: '4',
+                inplantTraining: 'Yes'
+            }
+        };
+
+        // Handle form submission
+        document.getElementById('loginForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const role = document.getElementById('role').value;
+
+            // Student credentials
+            const students = [
+                { username: '22ECR130', password: '22ECR130' },
+                { username: '22ECR159', password: '22ECR159' },
+                { username: '22ECR236', password: '22ECR236' },
+                { username: '22ECR237', password: '22ECR237' },
+                { username: '22ECR001', password: '22ECR001' }
+            ];
+
+            // Staff credentials
+            const staff = [
+                { username: 'staff1', password: 'staff123' }
+            ];
+
+            // Check if student credentials match
+            const student = students.find(s => s.username === username && s.password === password);
+            if (role === 'student' && student) {
+                showStudentDetails(username); // Show student details
+            } 
+            // Check if staff credentials match
+            else if (role === 'staff' && (username === 'preethi@gmail.com' ||username ==='sivapriya@gmail.com' || username === 'sivaranjini@gmail.com' || username ==='gowri@gmail.com')  && password === 'staff123') {
+                window.location.href = "staffdata.html"; 
+            }
+            // Invalid login
+            else {
+                alert("Invalid login details!");
+            }
+        });
+
+        // Show student details
+        function showStudentDetails(username) {
+            const student = studentData[username];
+            if (student) {
+                document.getElementById('loginContainer').style.display = 'none';
+                document.getElementById('detailsContainer').style.display = 'block';
+                document.getElementById('studentName').textContent = student.name;
+                document.getElementById('rollNo').textContent = student.rollNo;
+                document.getElementById('class').textContent = student.class;
+                document.getElementById('section').textContent = student.section;
+                document.getElementById('mobileNo').textContent = student.mobileNo;
+                document.getElementById('dob').textContent = student.dob;
+                document.getElementById('mentor').textContent = student.mentor;
+                document.getElementById('cgpa').textContent = student.cgpa;
+                document.getElementById('paperPresented').textContent = student.paperPresented;
+                document.getElementById('projectPresented').textContent = student.projectPresented;
+                document.getElementById('inplantTraining').textContent = student.inplantTraining;
+            } else {
+                document.getElementById('detailsContainer').innerHTML = "<p>Student not found.</p>";
+            }
+        }
+    </script>
+</body>
+</html>
+

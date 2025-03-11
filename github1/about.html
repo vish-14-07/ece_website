@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ABOUT</title>
+    <style>
+        /* Styling the background and text */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #d6dce8; /* Dark blue background */
+            background-image: url('background.jpg'); /* Replace with your image path */
+            background-size: cover; /* Ensure the image covers the entire background */
+            background-position: center; /* Center the image */
+            color: #161b4b; /* Light color for readability */
+        }
+        
+        h1 {
+            text-align: center;
+            color: #e78c0d; /* Golden color for heading */
+            margin-top: 20px;
+            font-size: 36px; /* Larger font size for headings */
+        }
+
+        p {
+            max-width: 900px; /* Increase the width for better text visibility */
+            margin: 20px auto;
+            padding: 20px;
+            background-color: rgba(15, 14, 58, 0.7); /* Darker semi-transparent background for better readability */
+            color: #e7edf3; /* Light text color */
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5); /* Subtle shadow for the text box */
+            line-height: 1.8; /* Improved readability */
+            font-size: 20px; /* Larger font size for paragraphs */
+        }
+
+        /* Styling for the "Vision of the Department" section */
+        h2 {
+            color: #f19421; /* Golden color for sub-headings */
+            font-size: 28px;
+            margin-top: 30px;
+        }
+
+        /* Styling the list */
+        ul {
+            list-style-type: disc; /* Add bullet points to the list */
+            margin-left: 40px; /* Indent the list */
+        }
+
+        li {
+            margin-bottom: 10px; /* Space between list items */
+            font-size: 18px; /* Font size for the list */
+        }
+
+        /* Styling for the department image container */
+        .department-image-container {
+            position: relative; /* Allow positioning of the pseudo-element */
+            width: 100%; /* Full width */
+            height: auto; /* Maintain aspect ratio */
+            display: block;
+        }
+
+        /* Styling for the department image */
+        .department-image {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* Blue shadow overlay using ::before */
+        .department-image-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(106, 106, 172, 0.3); /* Blue shadow with 30% opacity */
+            z-index: 1; /* Ensure the shadow is above the image */
+        }
+    </style>
+</head>
+<body>
+    <h1>ABOUT ECE DEPARTMENT</h1>
+
+    <!-- Full-width department image with blue shadow overlay -->
+    <div class="department-image-container">
+        <img src="eceblock.jpg" alt="ECE Department Building" class="department-image">
+    </div>
+
+    <p>The Electronics and Communication Engineering department occupies a prominent place in the annals of its academic history. The specialization of the faculty includes Telecommunication System Engineering, Computer Networks, Power Electronics, Control Systems, VLSI, Bio-Medical Engineering, Digital Signal Processing, Microwave Systems, Automation, Instrumentation, and Control, etc. The department has excellent laboratory facilities for developing projects and for doing research in the areas of Communication and Networking, VLSI design, Signal and Image processing, with the latest software. The department offers a four-year UG program in ECE and two-year PG programs in VLSI Design and Embedded Systems.</p>
+    
+    <h2>Vision of the Department</h2>
+    <p>To be a center of excellence for development and dissemination of knowledge in Electronics and Communication Engineering for the Nation and beyond.</p>
+
+    <h2>Mission of the Department</h2>
+    <ul>
+        <li>To impart industry and research-based quality education for developing value-based electronics and communication engineers.</li>
+        <li>To enrich the academic activities by continual improvement in the teaching-learning process.</li>
+        <li>To infuse confidence in the minds of students.</li>
+        <li>To develop expertise for consultancy activities by providing thrust for Industry-Institute Interaction.</li>
+        <li>To endeavor for constant upgradation of technical expertise for producing competent professionals to cater to the needs of society and meet global challenges.</li>
+    </ul>
+</body>
+</html>
+
+
